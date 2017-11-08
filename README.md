@@ -11,12 +11,12 @@ Se trata simplemente de un servicio web implementado con Servlets de Java para p
 
 ## Tecnologías a utilizar
 
- - Lenguaje: Java
- - IDE: Eclipse EE
- - Herramienta de construcción y gestión de proyectos: Apache Maven
- - Framework de acceso a la base de datos: Hibernate v5.2.12
- - Libreria de conversión a formato JSON: FlexJson v3.3
- - Logs de ejecución: log4j v1.2.17
+ - **Lenguaje**: Java
+ - **IDE**: Eclipse EE
+ - **Herramienta de construcción y gestión de proyectos**: Apache Maven
+ - **Framework de acceso a la base de datos**: Hibernate v5.2.12
+ - **Libreria de conversión a formato JSON**: FlexJson v3.3
+ - **Logs de ejecución**: log4j v1.2.17
 
 ## Contribuciones
  [@weezyxxl](https://github.com/weezyxxl)
