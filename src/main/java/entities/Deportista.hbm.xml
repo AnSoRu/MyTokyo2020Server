@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 09-nov-2017 17:36:49 by Hibernate Tools 5.2.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="mytokyo2020" dynamic-insert="false" dynamic-update="false" mutable="true" name="entities.Deportista" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="Deportista">
+        <id name="idDeportista" type="int">
+            <column name="idDeportista"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="entities.Pais" embed-xml="true" fetch="select" insert="true" name="pais" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Pais_idPais" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="nombre" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="Nombre"/>
+        </property>
+        <property generated="never" lazy="false" name="edad" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="Edad"/>
+        </property>
+        <property generated="never" lazy="false" name="lastModification" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="0" name="LastModification"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="eventoParticipaDeportistas" optimistic-lock="true" sort="unsorted" table="Evento_participa_Deportista">
+            <key on-delete="noaction">
+                <column name="Deportista_idDeportista" not-null="true"/>
+            </key>
+            <one-to-many class="entities.EventoParticipaDeportista" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

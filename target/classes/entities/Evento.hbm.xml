@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 09-nov-2017 17:36:49 by Hibernate Tools 5.2.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="mytokyo2020" dynamic-insert="false" dynamic-update="false" mutable="true" name="entities.Evento" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="Evento">
+        <id name="idEvento" type="int">
+            <column name="idEvento"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="entities.Disciplina" embed-xml="true" fetch="select" insert="true" name="disciplina" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Disciplina_idDisciplina" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="lugar" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="Lugar"/>
+        </property>
+        <property generated="never" lazy="false" name="fecha" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="Fecha"/>
+        </property>
+        <property generated="never" lazy="false" name="tipo" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="Tipo"/>
+        </property>
+        <property generated="never" lazy="false" name="resultados" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="Resultados"/>
+        </property>
+        <property generated="never" lazy="false" name="lastModification" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="0" name="LastModification"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="usuarioCompraEventos" optimistic-lock="true" sort="unsorted" table="Usuario_compra_Evento">
+            <key on-delete="noaction">
+                <column name="Evento_idEvento" not-null="true"/>
+            </key>
+            <one-to-many class="entities.UsuarioCompraEvento" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="eventoParticipaDeportistas" optimistic-lock="true" sort="unsorted" table="Evento_participa_Deportista">
+            <key on-delete="noaction">
+                <column name="Evento_idEvento" not-null="true"/>
+            </key>
+            <one-to-many class="entities.EventoParticipaDeportista" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 09-nov-2017 17:36:49 by Hibernate Tools 5.2.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="mytokyo2020" dynamic-insert="false" dynamic-update="false" mutable="true" name="entities.Usuario" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="Usuario">
+        <id name="username" type="string">
+            <column length="10" name="Username"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="edad" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="Edad"/>
+        </property>
+        <property generated="never" lazy="false" name="password" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="Password" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="lastModification" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="0" name="LastModification"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="usuarioCompraEventos" optimistic-lock="true" sort="unsorted" table="Usuario_compra_Evento">
+            <key on-delete="noaction">
+                <column length="10" name="Usuario_Username" not-null="true"/>
+            </key>
+            <one-to-many class="entities.UsuarioCompraEvento" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

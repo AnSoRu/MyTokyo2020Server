@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 09-nov-2017 17:36:49 by Hibernate Tools 5.2.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="mytokyo2020" dynamic-insert="false" dynamic-update="false" mutable="true" name="entities.UsuarioCompraEvento" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="Usuario_compra_Evento">
+        <composite-id class="entities.UsuarioCompraEventoId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="usuarioUsername" type="string">
+                <column length="10" name="Usuario_Username"/>
+            </key-property>
+            <key-property name="eventoIdEvento" type="int">
+                <column name="Evento_idEvento"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="entities.Evento" embed-xml="true" fetch="select" insert="false" name="evento" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="Evento_idEvento" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="entities.Usuario" embed-xml="true" fetch="select" insert="false" name="usuario" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column length="10" name="Usuario_Username" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="precio" optimistic-lock="true" type="java.lang.Float" unique="false">
+            <column name="Precio" precision="12" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="fechaDeCompra" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="0" name="Fecha_de_Compra"/>
+        </property>
+        <property generated="never" lazy="false" name="lastModification" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="0" name="LastModification"/>
+        </property>
+    </class>
+</hibernate-mapping>
