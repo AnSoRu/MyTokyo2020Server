@@ -3,6 +3,8 @@ package model;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,6 +13,8 @@ import org.hibernate.criterion.Restrictions;
 import entities.Usuario;
 
 public class UsuarioDAO {
+	
+	static final Logger uLogger = LogManager.getLogger(UsuarioDAO.class.getName());
 	
 	public List<Usuario> findAllUsuarios(){
 		SessionFactory sf = HibernateUtil.getSessionFactory();
@@ -33,6 +37,7 @@ public class UsuarioDAO {
 	}
 	
 	public boolean insertUsuario(Usuario u) {
+		uLogger.info("Entering insertUsuario");
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
@@ -40,12 +45,16 @@ public class UsuarioDAO {
 		List<Usuario> l = sess.createCriteria(Usuario.class).add(Restrictions.idEq(u.getUsername())).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		if(!l.isEmpty()) {
 			sess.close();
+			uLogger.error("The user with ID = " + u.getUsername() + " already exists.");
+			uLogger.info("Exiting insertUsuario.");
 			return false;
 		}
 		u.setLastModification(new Date());
 		sess.save(u);
 		sess.getTransaction().commit();
 		sess.close();
+		uLogger.info("User with ID = " + u.getUsername() + " inserted correctly.");
+		uLogger.info("Exiting insertUsuario");
 		return true;
 	}
 	
