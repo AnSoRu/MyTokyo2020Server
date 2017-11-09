@@ -1,5 +1,5 @@
 package entities;
-// Generated 09-nov-2017 17:36:49 by Hibernate Tools 5.2.6.Final
+// Generated 09-nov-2017 18:04:30 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -31,6 +31,9 @@ public class Deportista implements java.io.Serializable {
 	private String nombre;
 	private String edad;
 	private Date lastModification;
+	private Integer medallasOro;
+	private Integer medallasPlata;
+	private Integer medallasBronce;
 	private Set<EventoParticipaDeportista> eventoParticipaDeportistas = new HashSet<EventoParticipaDeportista>(0);
 
 	public Deportista() {
@@ -42,12 +45,16 @@ public class Deportista implements java.io.Serializable {
 	}
 
 	public Deportista(int idDeportista, Pais pais, String nombre, String edad, Date lastModification,
+			Integer medallasOro, Integer medallasPlata, Integer medallasBronce,
 			Set<EventoParticipaDeportista> eventoParticipaDeportistas) {
 		this.idDeportista = idDeportista;
 		this.pais = pais;
 		this.nombre = nombre;
 		this.edad = edad;
 		this.lastModification = lastModification;
+		this.medallasOro = medallasOro;
+		this.medallasPlata = medallasPlata;
+		this.medallasBronce = medallasBronce;
 		this.eventoParticipaDeportistas = eventoParticipaDeportistas;
 	}
 
@@ -98,6 +105,33 @@ public class Deportista implements java.io.Serializable {
 
 	public void setLastModification(Date lastModification) {
 		this.lastModification = lastModification;
+	}
+
+	@Column(name = "MedallasOro")
+	public Integer getMedallasOro() {
+		return this.medallasOro;
+	}
+
+	public void setMedallasOro(Integer medallasOro) {
+		this.medallasOro = medallasOro;
+	}
+
+	@Column(name = "MedallasPlata")
+	public Integer getMedallasPlata() {
+		return this.medallasPlata;
+	}
+
+	public void setMedallasPlata(Integer medallasPlata) {
+		this.medallasPlata = medallasPlata;
+	}
+
+	@Column(name = "MedallasBronce")
+	public Integer getMedallasBronce() {
+		return this.medallasBronce;
+	}
+
+	public void setMedallasBronce(Integer medallasBronce) {
+		this.medallasBronce = medallasBronce;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "deportista")

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated 09-nov-2017 17:36:49 by Hibernate Tools 5.2.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-nov-2017 18:04:30 by Hibernate Tools 5.2.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
     <class catalog="mytokyo2020" dynamic-insert="false" dynamic-update="false" mutable="true" name="entities.Deportista" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="Deportista">
         <id name="idDeportista" type="int">
@@ -17,6 +17,15 @@
         </property>
         <property generated="never" lazy="false" name="lastModification" optimistic-lock="true" type="timestamp" unique="false">
             <column length="0" name="LastModification"/>
+        </property>
+        <property generated="never" lazy="false" name="medallasOro" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="MedallasOro"/>
+        </property>
+        <property generated="never" lazy="false" name="medallasPlata" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="MedallasPlata"/>
+        </property>
+        <property generated="never" lazy="false" name="medallasBronce" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="MedallasBronce"/>
         </property>
         <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="eventoParticipaDeportistas" optimistic-lock="true" sort="unsorted" table="Evento_participa_Deportista">
             <key on-delete="noaction">
