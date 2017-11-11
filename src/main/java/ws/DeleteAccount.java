@@ -1,29 +1,33 @@
 package ws;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Set;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Usuario;
+import entities.UsuarioCompraEvento;
 import error.MensajeApp;
 import flexjson.JSONSerializer;
 import model.UsuarioDAO;
 
 /**
- * Servlet implementation class SignUp
+ * Servlet implementation class DeleteAccount
  */
-public class SignUp extends HttpServlet {
+public class DeleteAccount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static UsuarioDAO uDAO;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignUp() {
+    public DeleteAccount() {
         super();
-        SignUp.uDAO = new UsuarioDAO();
+        DeleteAccount.uDAO = new UsuarioDAO();
     }
 
 	/**
@@ -33,14 +37,15 @@ public class SignUp extends HttpServlet {
 		MensajeApp respuesta = null;
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		if((username==null)||(password==null)) {
+		if((username==null)&&(password==null)) {
 			respuesta = new MensajeApp("error","missing");
 		}else {
-			Usuario u = new Usuario(username, password);
-			if(uDAO.insertUsuario(u)) {
-				respuesta = new MensajeApp("ok","inserted");
+			List<Usuario> uAuxL = uDAO.getUsuarioByUsername(username);
+			if(!uAuxL.isEmpty()) {
+				Usuario uAux = uAuxL.get(0);
+				Set<UsuarioCompraEvento> eventosUser = uAux.getUsuarioCompraEventos();
 			}else {
-				respuesta = new MensajeApp("error","exists");
+				respuesta = new MensajeApp("error","noexists");
 			}
 		}
 		response.setContentType("application/json");
