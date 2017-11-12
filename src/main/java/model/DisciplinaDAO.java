@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -40,5 +41,23 @@ public class DisciplinaDAO {
 		List<Disciplina> l = sess.createCriteria(Disciplina.class).add(Restrictions.ilike("nombre", name, MatchMode.EXACT)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		sess.close();
 		return l;
+	}
+	
+	public boolean updateDisciplina(Disciplina d) {
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session sess = sf.openSession();
+		sess.beginTransaction();
+		@SuppressWarnings({ "unchecked", "deprecation" })
+		List<Disciplina> l = sess.createCriteria(Disciplina.class).add(Restrictions.idEq(d.getIdDisciplina())).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		if(l.isEmpty()) {
+			sess.close();
+			return false;
+		}
+		d.setLastModification(new Date());
+		sess.clear();
+		sess.update(d);
+		sess.getTransaction().commit();
+		sess.close();
+		return true;
 	}
 }

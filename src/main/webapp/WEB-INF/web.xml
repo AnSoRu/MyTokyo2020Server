@@ -21,6 +21,42 @@
  	<description></description>
  	<servlet-class>ws.GetUser</servlet-class>
  </servlet>
+ <servlet>
+ 	<servlet-name>ChangePassword</servlet-name>
+ 	<display-name>ChangePassword</display-name>
+ 	<description></description>
+ 	<servlet-class>ws.ChangePassword</servlet-class>
+ </servlet>
+ <servlet>
+ 	<servlet-name>GetShoppingHistory</servlet-name>
+ 	<display-name>GetShoppingHistory</display-name>
+ 	<description></description>
+ 	<servlet-class>ws.GetShoppingHistory</servlet-class>
+ </servlet>
+ <servlet>
+ 	<servlet-name>GetEventosDisciplina</servlet-name>
+ 	<display-name>GetEventosDisciplina</display-name>
+ 	<description></description>
+ 	<servlet-class>ws.GetEventosDisciplina</servlet-class>
+ </servlet>
+ <servlet>
+ 	<servlet-name>GetMedalDisplayTable</servlet-name>
+ 	<display-name>GetMedalDisplayTable</display-name>
+ 	<description></description>
+ 	<servlet-class>ws.GetMedalDisplayTable</servlet-class>
+ </servlet>
+ <servlet>
+ 	<servlet-name>GetPaisByName</servlet-name>
+ 	<display-name>GetPaisByName</display-name>
+ 	<description></description>
+ 	<servlet-class>ws.GetPaisByName</servlet-class>
+ </servlet>
+ <servlet>
+ 	<servlet-name>GetDeportista</servlet-name>
+ 	<display-name>GetDeportista</display-name>
+ 	<description></description>
+ 	<servlet-class>ws.GetDeportista</servlet-class>
+ </servlet>
  <servlet-mapping>
  	<servlet-name>SignUp</servlet-name>
  	<url-pattern>/SignUp</url-pattern>
@@ -32,5 +68,29 @@
  <servlet-mapping>
  	<servlet-name>GetUser</servlet-name>
  	<url-pattern>/GetUser</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+ 	<servlet-name>ChangePassword</servlet-name>
+ 	<url-pattern>/ChangePassword</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+ 	<servlet-name>GetShoppingHistory</servlet-name>
+ 	<url-pattern>/GetShoppingHistory</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+ 	<servlet-name>GetEventosDisciplina</servlet-name>
+ 	<url-pattern>/GetEventosDisciplina</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+ 	<servlet-name>GetMedalDisplayTable</servlet-name>
+ 	<url-pattern>/GetMedalDisplayTable</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+ 	<servlet-name>GetPaisByName</servlet-name>
+ 	<url-pattern>/GetPaisByName</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+ 	<servlet-name>GetDeportista</servlet-name>
+ 	<url-pattern>/GetDeportista</url-pattern>
  </servlet-mapping>
 </web-app>

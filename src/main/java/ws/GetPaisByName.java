@@ -8,47 +8,47 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entities.Usuario;
-import model.UsuarioDAO;
+import entities.Pais;
 import error.MensajeApp;
 import flexjson.JSONSerializer;
+import model.PaisDAO;
 
 /**
- * Servlet implementation class GetUser
+ * Servlet implementation class GetPaisByName
  */
-public class GetUser extends HttpServlet {
+public class GetPaisByName extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static UsuarioDAO uDAO;
+	private static PaisDAO pDAO;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetUser() {
+    public GetPaisByName() {
         super();
-        GetUser.uDAO = new UsuarioDAO();
-        // TODO Auto-generated constructor stub
+        GetPaisByName.pDAO = new PaisDAO();
     }
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
+		String nombrePais = request.getParameter("nombre");
 		MensajeApp respuesta = null;
-		if(username == null) {
+		if(nombrePais == null) {
 			respuesta = new MensajeApp("error","missing");
 			response.setContentType("application/json");
 			response.getWriter().print(new JSONSerializer().exclude("class").serialize(respuesta));
 		}else {
-			List<Usuario> uAuxL = uDAO.getUsuarioByUsername(username);
-			if(!uAuxL.isEmpty()) {
-				Usuario uAux = uAuxL.get(0);
+			List<Pais> pAuxL = pDAO.getPaisByName(nombrePais);
+			if(!pAuxL.isEmpty()) {
 				response.setContentType("application/json");
-				response.getWriter().print(new JSONSerializer().exclude("class").serialize(uAux));
+				response.getWriter().print(new JSONSerializer().exclude("class").exclude("deportistas").serialize(pAuxL));
 			}else {
-			   respuesta = new MensajeApp("error","noexists");
-			   response.setContentType("application/json");
-			   response.getWriter().print(new JSONSerializer().exclude("class").serialize(respuesta));
-			}			
+				respuesta = new MensajeApp("error","noexists");
+				response.setContentType("application/json");
+				response.getWriter().print(new JSONSerializer().exclude("class").serialize(respuesta));
+			}
 		}
 	}
+
 }

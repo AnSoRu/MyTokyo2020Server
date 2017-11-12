@@ -69,6 +69,7 @@ public class UsuarioDAO {
 			return false;
 		}
 		u.setLastModification(new Date());
+		sess.clear();
 		sess.update(u);
 		sess.getTransaction().commit();
 		sess.close();

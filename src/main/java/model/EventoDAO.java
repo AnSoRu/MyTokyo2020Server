@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -29,6 +30,24 @@ public class EventoDAO {
 		List<Evento> l = sess.createCriteria(Evento.class).add(Restrictions.idEq(idEvento)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		sess.close();
 		return l;
+	}
+	
+	public boolean updateEvento(Evento e) {
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session sess = sf.openSession();
+		sess.beginTransaction();
+		@SuppressWarnings({ "unchecked", "deprecation" })
+		List<Evento> l = sess.createCriteria(Evento.class).add(Restrictions.idEq(e.getIdEvento())).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		if(l.isEmpty()) {
+			sess.close();
+			return false;
+		}
+		e.setLastModification(new Date());
+		sess.clear();
+		sess.update(e);
+		sess.getTransaction().commit();
+		sess.close();
+		return true;
 	}
 
 }

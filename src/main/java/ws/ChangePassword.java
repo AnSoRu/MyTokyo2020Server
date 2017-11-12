@@ -2,7 +2,6 @@ package ws;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,27 +9,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Usuario;
-import entities.UsuarioCompraEvento;
 import error.MensajeApp;
 import flexjson.JSONSerializer;
-import model.UsuarioCompraEventoDAO;
 import model.UsuarioDAO;
 
 /**
- * Servlet implementation class DeleteAccount
+ * Servlet implementation class ChangePassword
  */
-public class DeleteAccount extends HttpServlet {
+public class ChangePassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static UsuarioDAO uDAO;
-	private static UsuarioCompraEventoDAO ucDAO;
-       
+    private static UsuarioDAO uDAO;   
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteAccount() {
+    public ChangePassword() {
         super();
-        DeleteAccount.uDAO = new UsuarioDAO();
-        DeleteAccount.ucDAO = new UsuarioCompraEventoDAO();
+        ChangePassword.uDAO = new UsuarioDAO();
     }
 
 	/**
@@ -40,28 +34,27 @@ public class DeleteAccount extends HttpServlet {
 		MensajeApp respuesta = null;
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		if((username==null)&&(password==null)) {
+		String newPassword = request.getParameter("newPassword");
+		if((username == null)||(password == null) || (newPassword == null)) {
 			respuesta = new MensajeApp("error","missing");
 		}else {
+			//Usuario existe?
 			List<Usuario> uAuxL = uDAO.getUsuarioByUsername(username);
 			if(!uAuxL.isEmpty()) {
 				Usuario uAux = uAuxL.get(0);
-				Set<UsuarioCompraEvento> eventosUser = uAux.getUsuarioCompraEventos();
-				if(!eventosUser.isEmpty()) {
-					System.out.println("El usuario tiene eventos");
-					for(UsuarioCompraEvento e: eventosUser) {
-						ucDAO.delete(e);
+				//El password que introduce es el mismo que está almacenado
+				if(uAux.getPassword()!=null) {
+					if(uAux.getPassword().equals(password)) {
+						if(uAux.getPassword().equals(newPassword)) {
+							respuesta = new MensajeApp("error","samepass");
+						}else {
+							uAux.setPassword(newPassword);
+							uDAO.updateUsuario(uAux);
+							respuesta = new MensajeApp("ok","updated");
+						}
+					}else {
+						respuesta = new MensajeApp("error","badpass");
 					}
-					eventosUser.clear();
-				}
-				uAux.setUsuarioCompraEventos(eventosUser);
-				uDAO.updateUsuario(uAux);
-				List<Usuario> uAuxL2 = uDAO.getUsuarioByUsername(username);
-				Usuario uAux2 = uAuxL2.get(0);
-				if(uDAO.deleteUsuario(uAux2)) {
-					respuesta = new MensajeApp("ok","deleted");
-				}else {
-					respuesta = new MensajeApp("error","nodeleted");
 				}
 			}else {
 				respuesta = new MensajeApp("error","noexists");
@@ -70,5 +63,4 @@ public class DeleteAccount extends HttpServlet {
 		response.setContentType("application/json");
 		response.getWriter().print(new JSONSerializer().exclude("class").serialize(respuesta));
 	}
-
 }
