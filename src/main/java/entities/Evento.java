@@ -1,5 +1,5 @@
 package entities;
-// Generated 09-nov-2017 18:04:30 by Hibernate Tools 5.2.6.Final
+// Generated 12-nov-2017 16:38:26 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -22,10 +22,6 @@ import javax.persistence.TemporalType;
 @Table(name = "Evento", catalog = "mytokyo2020")
 public class Evento implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private int idEvento;
 	private Disciplina disciplina;
 	private String lugar;
@@ -39,9 +35,10 @@ public class Evento implements java.io.Serializable {
 	public Evento() {
 	}
 
-	public Evento(int idEvento, Disciplina disciplina) {
+	public Evento(int idEvento, Disciplina disciplina, Date lastModification) {
 		this.idEvento = idEvento;
 		this.disciplina = disciplina;
+		this.lastModification = lastModification;
 	}
 
 	public Evento(int idEvento, Disciplina disciplina, String lugar, String fecha, String tipo, String resultados,
@@ -116,7 +113,7 @@ public class Evento implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "LastModification", length = 0)
+	@Column(name = "LastModification", nullable = false, length = 0)
 	public Date getLastModification() {
 		return this.lastModification;
 	}

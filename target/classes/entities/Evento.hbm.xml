@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated 09-nov-2017 18:04:30 by Hibernate Tools 5.2.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-nov-2017 16:38:26 by Hibernate Tools 5.2.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
     <class catalog="mytokyo2020" dynamic-insert="false" dynamic-update="false" mutable="true" name="entities.Evento" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="Evento">
         <id name="idEvento" type="int">
@@ -22,7 +22,7 @@
             <column length="45" name="Resultados"/>
         </property>
         <property generated="never" lazy="false" name="lastModification" optimistic-lock="true" type="timestamp" unique="false">
-            <column length="0" name="LastModification"/>
+            <column length="0" name="LastModification" not-null="true"/>
         </property>
         <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="usuarioCompraEventos" optimistic-lock="true" sort="unsorted" table="Usuario_compra_Evento">
             <key on-delete="noaction">

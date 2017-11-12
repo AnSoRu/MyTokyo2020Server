@@ -1,5 +1,5 @@
 package entities;
-// Generated 09-nov-2017 18:04:30 by Hibernate Tools 5.2.6.Final
+// Generated 12-nov-2017 16:38:26 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import javax.persistence.AttributeOverride;
@@ -21,10 +21,6 @@ import javax.persistence.TemporalType;
 @Table(name = "Usuario_compra_Evento", catalog = "mytokyo2020")
 public class UsuarioCompraEvento implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private UsuarioCompraEventoId id;
 	private Evento evento;
 	private Usuario usuario;
@@ -35,10 +31,11 @@ public class UsuarioCompraEvento implements java.io.Serializable {
 	public UsuarioCompraEvento() {
 	}
 
-	public UsuarioCompraEvento(UsuarioCompraEventoId id, Evento evento, Usuario usuario) {
+	public UsuarioCompraEvento(UsuarioCompraEventoId id, Evento evento, Usuario usuario, Date lastModification) {
 		this.id = id;
 		this.evento = evento;
 		this.usuario = usuario;
+		this.lastModification = lastModification;
 	}
 
 	public UsuarioCompraEvento(UsuarioCompraEventoId id, Evento evento, Usuario usuario, Float precio,
@@ -64,7 +61,7 @@ public class UsuarioCompraEvento implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Evento_idEvento", nullable = false, insertable = false, updatable = false)
 	public Evento getEvento() {
 		return this.evento;
@@ -74,7 +71,7 @@ public class UsuarioCompraEvento implements java.io.Serializable {
 		this.evento = evento;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Usuario_Username", nullable = false, insertable = false, updatable = false)
 	public Usuario getUsuario() {
 		return this.usuario;
@@ -104,7 +101,7 @@ public class UsuarioCompraEvento implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "LastModification", length = 0)
+	@Column(name = "LastModification", nullable = false, length = 0)
 	public Date getLastModification() {
 		return this.lastModification;
 	}

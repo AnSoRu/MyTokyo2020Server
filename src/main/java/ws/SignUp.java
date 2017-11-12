@@ -1,6 +1,8 @@
 package ws;
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +38,7 @@ public class SignUp extends HttpServlet {
 		if((username==null)||(password==null)) {
 			respuesta = new MensajeApp("error","missing");
 		}else {
-			Usuario u = new Usuario(username, password);
+			Usuario u = new Usuario(username, password,new Date());
 			if(uDAO.insertUsuario(u)) {
 				respuesta = new MensajeApp("ok","inserted");
 			}else {

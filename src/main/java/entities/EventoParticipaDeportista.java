@@ -1,5 +1,5 @@
 package entities;
-// Generated 09-nov-2017 18:04:30 by Hibernate Tools 5.2.6.Final
+// Generated 12-nov-2017 16:38:26 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import javax.persistence.AttributeOverride;
@@ -21,10 +21,6 @@ import javax.persistence.TemporalType;
 @Table(name = "Evento_participa_Deportista", catalog = "mytokyo2020")
 public class EventoParticipaDeportista implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private EventoParticipaDeportistaId id;
 	private Deportista deportista;
 	private Evento evento;
@@ -34,10 +30,12 @@ public class EventoParticipaDeportista implements java.io.Serializable {
 	public EventoParticipaDeportista() {
 	}
 
-	public EventoParticipaDeportista(EventoParticipaDeportistaId id, Deportista deportista, Evento evento) {
+	public EventoParticipaDeportista(EventoParticipaDeportistaId id, Deportista deportista, Evento evento,
+			Date lastModification) {
 		this.id = id;
 		this.deportista = deportista;
 		this.evento = evento;
+		this.lastModification = lastModification;
 	}
 
 	public EventoParticipaDeportista(EventoParticipaDeportistaId id, Deportista deportista, Evento evento,
@@ -62,7 +60,7 @@ public class EventoParticipaDeportista implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Deportista_idDeportista", nullable = false, insertable = false, updatable = false)
 	public Deportista getDeportista() {
 		return this.deportista;
@@ -72,7 +70,7 @@ public class EventoParticipaDeportista implements java.io.Serializable {
 		this.deportista = deportista;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Evento_idEvento", nullable = false, insertable = false, updatable = false)
 	public Evento getEvento() {
 		return this.evento;
@@ -92,7 +90,7 @@ public class EventoParticipaDeportista implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "LastModification", length = 0)
+	@Column(name = "LastModification", nullable = false, length = 0)
 	public Date getLastModification() {
 		return this.lastModification;
 	}
