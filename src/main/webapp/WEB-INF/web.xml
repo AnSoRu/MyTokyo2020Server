@@ -57,6 +57,12 @@
  	<description></description>
  	<servlet-class>ws.GetDeportista</servlet-class>
  </servlet>
+ <servlet>
+ 	<servlet-name>GetDisciplina</servlet-name>
+ 	<display-name>GetDisciplina</display-name>
+ 	<description></description>
+ 	<servlet-class>ws.GetDisciplina</servlet-class>
+ </servlet>
  <servlet-mapping>
  	<servlet-name>SignUp</servlet-name>
  	<url-pattern>/SignUp</url-pattern>
@@ -92,5 +98,9 @@
  <servlet-mapping>
  	<servlet-name>GetDeportista</servlet-name>
  	<url-pattern>/GetDeportista</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+ 	<servlet-name>GetDisciplina</servlet-name>
+ 	<url-pattern>/GetDisciplina</url-pattern>
  </servlet-mapping>
 </web-app>
