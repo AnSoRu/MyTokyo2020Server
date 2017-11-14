@@ -37,7 +37,7 @@ public class EventoDAO {
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "deprecation", "unchecked" })
-		List<Evento> l = sess.createCriteria(Evento.class).add(Restrictions.like("fecha",d)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		List<Evento> l = sess.createCriteria(Evento.class).add(Restrictions.eq("fecha",d)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		sess.close();
 		return l;
 	}

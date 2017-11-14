@@ -1,5 +1,5 @@
 package entities;
-// Generated 14-nov-2017 0:06:16 by Hibernate Tools 5.2.6.Final
+// Generated 14-nov-2017 11:46:19 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -83,7 +83,7 @@ public class Usuario implements java.io.Serializable {
 		this.lastModification = lastModification;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
 	public Set<UsuarioCompraEvento> getUsuarioCompraEventos() {
 		return this.usuarioCompraEventos;
 	}

@@ -1,5 +1,5 @@
 package entities;
-// Generated 14-nov-2017 0:06:16 by Hibernate Tools 5.2.6.Final
+// Generated 14-nov-2017 11:46:19 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -26,6 +26,7 @@ public class Evento implements java.io.Serializable {
 	private Disciplina disciplina;
 	private String lugar;
 	private Date fecha;
+	private Date hora;
 	private String tipo;
 	private String resultados;
 	private Date lastModification;
@@ -41,13 +42,14 @@ public class Evento implements java.io.Serializable {
 		this.lastModification = lastModification;
 	}
 
-	public Evento(int idEvento, Disciplina disciplina, String lugar, Date fecha, String tipo, String resultados,
-			Date lastModification, Set<UsuarioCompraEvento> usuarioCompraEventos,
+	public Evento(int idEvento, Disciplina disciplina, String lugar, Date fecha, Date hora, String tipo,
+			String resultados, Date lastModification, Set<UsuarioCompraEvento> usuarioCompraEventos,
 			Set<EventoParticipaDeportista> eventoParticipaDeportistas) {
 		this.idEvento = idEvento;
 		this.disciplina = disciplina;
 		this.lugar = lugar;
 		this.fecha = fecha;
+		this.hora = hora;
 		this.tipo = tipo;
 		this.resultados = resultados;
 		this.lastModification = lastModification;
@@ -66,7 +68,7 @@ public class Evento implements java.io.Serializable {
 		this.idEvento = idEvento;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Disciplina_idDisciplina", nullable = false)
 	public Disciplina getDisciplina() {
 		return this.disciplina;
@@ -85,7 +87,7 @@ public class Evento implements java.io.Serializable {
 		this.lugar = lugar;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "Fecha", length = 0)
 	public Date getFecha() {
 		return this.fecha;
@@ -93,6 +95,16 @@ public class Evento implements java.io.Serializable {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	@Temporal(TemporalType.TIME)
+	@Column(name = "Hora", length = 0)
+	public Date getHora() {
+		return this.hora;
+	}
+
+	public void setHora(Date hora) {
+		this.hora = hora;
 	}
 
 	@Column(name = "Tipo", length = 45)
@@ -123,7 +135,7 @@ public class Evento implements java.io.Serializable {
 		this.lastModification = lastModification;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "evento")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "evento")
 	public Set<UsuarioCompraEvento> getUsuarioCompraEventos() {
 		return this.usuarioCompraEventos;
 	}
@@ -132,7 +144,7 @@ public class Evento implements java.io.Serializable {
 		this.usuarioCompraEventos = usuarioCompraEventos;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "evento")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "evento")
 	public Set<EventoParticipaDeportista> getEventoParticipaDeportistas() {
 		return this.eventoParticipaDeportistas;
 	}

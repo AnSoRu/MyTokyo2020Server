@@ -1,5 +1,5 @@
 package entities;
-// Generated 14-nov-2017 0:06:16 by Hibernate Tools 5.2.6.Final
+// Generated 14-nov-2017 11:46:19 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import javax.persistence.AttributeOverride;
@@ -61,7 +61,7 @@ public class UsuarioCompraEvento implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Evento_idEvento", nullable = false, insertable = false, updatable = false)
 	public Evento getEvento() {
 		return this.evento;
@@ -71,7 +71,7 @@ public class UsuarioCompraEvento implements java.io.Serializable {
 		this.evento = evento;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Usuario_Username", nullable = false, insertable = false, updatable = false)
 	public Usuario getUsuario() {
 		return this.usuario;

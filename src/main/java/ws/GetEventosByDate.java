@@ -41,8 +41,7 @@ public class GetEventosByDate extends HttpServlet {
 			respuesta = new MensajeApp("error","missing");
 		}else {
 			if (fecha.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})")) {
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				fecha = fecha + " 00:00:00";
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				Date dAux;
 				try {
 					dAux = format.parse(fecha);

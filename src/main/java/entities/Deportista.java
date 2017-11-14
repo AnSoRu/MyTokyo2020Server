@@ -1,5 +1,5 @@
 package entities;
-// Generated 14-nov-2017 0:06:16 by Hibernate Tools 5.2.6.Final
+// Generated 14-nov-2017 11:46:19 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -66,7 +66,7 @@ public class Deportista implements java.io.Serializable {
 		this.idDeportista = idDeportista;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Pais_idPais", nullable = false)
 	public Pais getPais() {
 		return this.pais;
@@ -131,7 +131,7 @@ public class Deportista implements java.io.Serializable {
 		this.medallasBronce = medallasBronce;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "deportista")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "deportista")
 	public Set<EventoParticipaDeportista> getEventoParticipaDeportistas() {
 		return this.eventoParticipaDeportistas;
 	}
