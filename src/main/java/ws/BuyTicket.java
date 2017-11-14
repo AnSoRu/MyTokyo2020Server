@@ -65,7 +65,7 @@ public class BuyTicket extends HttpServlet {
 					if(!eventosUser.isEmpty()) {
 						for(UsuarioCompraEvento uce: eventosUser) {
 							if((uce.getId().getUsuarioUsername().equals(uAux.getUsername()))&&
-									uce.getEvento().getIdEvento() == eAux.getIdEvento()) {
+									(uce.getEvento().getIdEvento() == eAux.getIdEvento())) {
 								yaComprado = true;
 								break;
 							}
