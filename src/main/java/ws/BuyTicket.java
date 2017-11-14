@@ -77,13 +77,7 @@ public class BuyTicket extends HttpServlet {
 						}else {
 							UsuarioCompraEventoId nuevoUCE = new UsuarioCompraEventoId(uAux.getUsername(),eAux.getIdEvento());
 							UsuarioCompraEvento uCE = new UsuarioCompraEvento(nuevoUCE, eAux, uAux,new Random().nextFloat(),new Date(),new Date());
-							//eventosUser.add(uCE);
-							//usersEvento.add(uCE);
-							//eAux.setUsuarioCompraEventos(usersEvento);
-							//uAux.setUsuarioCompraEventos(eventosUser);
 							if(uCDAO.insert(uCE)) {
-								//eDAO.updateEvento(eAux);
-								//uDAO.updateUsuario(uAux);
 								respuesta = new MensajeApp("ok","bought1");
 								response.setContentType("application/json");
 								response.getWriter().print(new JSONSerializer().exclude("class").serialize(respuesta));
@@ -101,8 +95,6 @@ public class BuyTicket extends HttpServlet {
 						eAux.setUsuarioCompraEventos(usersEvento);
 						uAux.setUsuarioCompraEventos(eventosUser);
 						if(uCDAO.insert(uCE)) {
-							//eDAO.updateEvento(eAux);
-							//uDAO.updateUsuario(uAux);
 							respuesta = new MensajeApp("ok","bought2");
 							response.setContentType("application/json");
 							response.getWriter().print(new JSONSerializer().exclude("class").serialize(respuesta));
@@ -111,11 +103,6 @@ public class BuyTicket extends HttpServlet {
 							response.setContentType("application/json");
 							response.getWriter().print(new JSONSerializer().exclude("class").serialize(respuesta));
 						}
-						/*eDAO.updateEvento(eAux);
-						uDAO.updateUsuario(uAux);
-						respuesta = new MensajeApp("ok","bought2");
-						response.setContentType("application/json");
-						response.getWriter().print(new JSONSerializer().exclude("class").serialize(respuesta));*/
 					}
 				}else {
 					respuesta = new MensajeApp("error","noexists");
