@@ -1,5 +1,5 @@
 package entities;
-// Generated 12-nov-2017 16:38:26 by Hibernate Tools 5.2.6.Final
+// Generated 14-nov-2017 0:06:16 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -25,7 +25,7 @@ public class Evento implements java.io.Serializable {
 	private int idEvento;
 	private Disciplina disciplina;
 	private String lugar;
-	private String fecha;
+	private Date fecha;
 	private String tipo;
 	private String resultados;
 	private Date lastModification;
@@ -41,7 +41,7 @@ public class Evento implements java.io.Serializable {
 		this.lastModification = lastModification;
 	}
 
-	public Evento(int idEvento, Disciplina disciplina, String lugar, String fecha, String tipo, String resultados,
+	public Evento(int idEvento, Disciplina disciplina, String lugar, Date fecha, String tipo, String resultados,
 			Date lastModification, Set<UsuarioCompraEvento> usuarioCompraEventos,
 			Set<EventoParticipaDeportista> eventoParticipaDeportistas) {
 		this.idEvento = idEvento;
@@ -66,7 +66,7 @@ public class Evento implements java.io.Serializable {
 		this.idEvento = idEvento;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Disciplina_idDisciplina", nullable = false)
 	public Disciplina getDisciplina() {
 		return this.disciplina;
@@ -85,12 +85,13 @@ public class Evento implements java.io.Serializable {
 		this.lugar = lugar;
 	}
 
-	@Column(name = "Fecha", length = 45)
-	public String getFecha() {
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "Fecha", length = 0)
+	public Date getFecha() {
 		return this.fecha;
 	}
 
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
@@ -122,7 +123,7 @@ public class Evento implements java.io.Serializable {
 		this.lastModification = lastModification;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "evento")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "evento")
 	public Set<UsuarioCompraEvento> getUsuarioCompraEventos() {
 		return this.usuarioCompraEventos;
 	}
@@ -131,7 +132,7 @@ public class Evento implements java.io.Serializable {
 		this.usuarioCompraEventos = usuarioCompraEventos;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "evento")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "evento")
 	public Set<EventoParticipaDeportista> getEventoParticipaDeportistas() {
 		return this.eventoParticipaDeportistas;
 	}

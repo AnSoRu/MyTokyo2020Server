@@ -32,6 +32,16 @@ public class EventoDAO {
 		return l;
 	}
 	
+	public List<Evento> getEventosByDate(Date d){
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session sess = sf.openSession();
+		sess.beginTransaction();
+		@SuppressWarnings({ "deprecation", "unchecked" })
+		List<Evento> l = sess.createCriteria(Evento.class).add(Restrictions.like("fecha",d)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		sess.close();
+		return l;
+	}
+	
 	public boolean updateEvento(Evento e) {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session sess = sf.openSession();

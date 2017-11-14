@@ -12,8 +12,10 @@
   <mapping class="entities.Disciplina"/>
   <mapping class="entities.Evento"/>
   <mapping class="entities.EventoParticipaDeportista"/>
+  <mapping class="entities.EventoParticipaDeportistaId"/>
   <mapping class="entities.Pais"/>
   <mapping class="entities.Usuario"/>
   <mapping class="entities.UsuarioCompraEvento"/>
+  <mapping class="entities.UsuarioCompraEventoId"/>
  </session-factory>
 </hibernate-configuration>

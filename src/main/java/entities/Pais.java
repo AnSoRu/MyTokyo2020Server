@@ -1,5 +1,5 @@
 package entities;
-// Generated 12-nov-2017 16:38:26 by Hibernate Tools 5.2.6.Final
+// Generated 14-nov-2017 0:06:16 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -115,7 +115,7 @@ public class Pais implements java.io.Serializable {
 		this.lastModificaton = lastModificaton;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pais")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pais")
 	public Set<Deportista> getDeportistas() {
 		return this.deportistas;
 	}
