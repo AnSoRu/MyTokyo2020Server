@@ -14,8 +14,14 @@ import entities.Pais;
 
 public class PaisDAO {
 	
+	private static HibernateUtil hU;
+	
+	public PaisDAO() {
+		PaisDAO.hU = new HibernateUtil();
+	}
+	
 	public List<Pais> findAllPaises(){
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -25,7 +31,7 @@ public class PaisDAO {
 	}
 	
 	public List<Pais> getPaisByID(int idPais) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -35,7 +41,7 @@ public class PaisDAO {
 	}
 	
 	public List<Pais> getPaisByName(String name) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "deprecation", "unchecked" })
@@ -45,7 +51,7 @@ public class PaisDAO {
 	}
 	
 	public boolean updatePais(Pais p) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })

@@ -12,8 +12,14 @@ import entities.Evento;
 
 public class EventoDAO {
 	
+	private static HibernateUtil hU;
+	
+	public EventoDAO() {
+		EventoDAO.hU = new HibernateUtil();
+	}
+	
 	public List<Evento> findAllEventos(){
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -23,7 +29,7 @@ public class EventoDAO {
 	}
 	
 	public List<Evento> getEventoByID(int idEvento) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -33,7 +39,7 @@ public class EventoDAO {
 	}
 	
 	public List<Evento> getEventosByDate(Date d){
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "deprecation", "unchecked" })
@@ -43,7 +49,7 @@ public class EventoDAO {
 	}
 	
 	public boolean updateEvento(Evento e) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })

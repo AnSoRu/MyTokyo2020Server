@@ -13,8 +13,14 @@ import entities.Deportista;
 
 public class DeportistaDAO {
 	
+	private static HibernateUtil hU;
+	
+	public DeportistaDAO() {
+		DeportistaDAO.hU = new HibernateUtil();
+	}
+	
 	public List<Deportista> findAllDeportistas(){
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -24,7 +30,7 @@ public class DeportistaDAO {
 	}
 	
 	public List<Deportista> getDeportistaByID(int idDeportista) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -34,7 +40,7 @@ public class DeportistaDAO {
 	}
 	
 	public List<Deportista> getDeportistaByName(String name) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "deprecation", "unchecked" })
@@ -44,7 +50,7 @@ public class DeportistaDAO {
 	}
 	
 	public boolean updateDeportista(Deportista d) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })

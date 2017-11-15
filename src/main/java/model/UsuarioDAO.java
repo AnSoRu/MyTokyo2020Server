@@ -16,8 +16,14 @@ public class UsuarioDAO {
 	
 	static final Logger uLogger = LogManager.getLogger(UsuarioDAO.class.getName());
 	
+	private static HibernateUtil hU;
+	
+	public UsuarioDAO() {
+		UsuarioDAO.hU = new HibernateUtil();
+	}
+	
 	public List<Usuario> findAllUsuarios(){
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -27,7 +33,7 @@ public class UsuarioDAO {
 	}
 	
 	public List<Usuario> getUsuarioByUsername(String username) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -38,7 +44,7 @@ public class UsuarioDAO {
 	
 	public boolean insertUsuario(Usuario u) {
 		uLogger.info("Entering insertUsuario");
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -59,7 +65,7 @@ public class UsuarioDAO {
 	}
 	
 	public boolean updateUsuario(Usuario u) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -77,7 +83,7 @@ public class UsuarioDAO {
 	}
 	
 	public boolean deleteUsuario(Usuario u) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })

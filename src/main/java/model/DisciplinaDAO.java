@@ -12,9 +12,16 @@ import org.hibernate.criterion.Restrictions;
 import entities.Disciplina;
 
 public class DisciplinaDAO {
+	
+	private static HibernateUtil hU;
+	
+	
+	public DisciplinaDAO() {
+		DisciplinaDAO.hU = new HibernateUtil();
+	}
 
 	public List<Disciplina> findAllDisciplinas(){
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -24,7 +31,7 @@ public class DisciplinaDAO {
 	}
 	
 	public List<Disciplina> getDisciplinaByID(int idDisciplina) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -34,7 +41,7 @@ public class DisciplinaDAO {
 	}
 	
 	public List<Disciplina> getDisciplinaByName(String name) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "deprecation", "unchecked" })
@@ -44,7 +51,7 @@ public class DisciplinaDAO {
 	}
 	
 	public boolean updateDisciplina(Disciplina d) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })

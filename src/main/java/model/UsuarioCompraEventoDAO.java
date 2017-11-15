@@ -12,8 +12,15 @@ import entities.UsuarioCompraEvento;
 
 public class UsuarioCompraEventoDAO {
 	
+	
+	private static HibernateUtil hU;
+	
+	public UsuarioCompraEventoDAO() {
+		UsuarioCompraEventoDAO.hU = new HibernateUtil();
+	}
+	
 	public boolean insert(UsuarioCompraEvento uce) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -29,7 +36,7 @@ public class UsuarioCompraEventoDAO {
 		return true;
 	}
 	public boolean delete(UsuarioCompraEvento uce) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
