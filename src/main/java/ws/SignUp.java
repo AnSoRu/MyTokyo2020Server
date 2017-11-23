@@ -19,14 +19,14 @@ import model.UsuarioDAO;
 public class SignUp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static UsuarioDAO uDAO;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SignUp() {
-        super();
-        SignUp.uDAO = new UsuarioDAO();
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public SignUp() {
+		super();
+		SignUp.uDAO = new UsuarioDAO();
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,14 +35,25 @@ public class SignUp extends HttpServlet {
 		MensajeApp respuesta = null;
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String edad = request.getParameter("edad");
 		if((username==null)||(password==null)) {
 			respuesta = new MensajeApp("error","missing");
 		}else {
-			Usuario u = new Usuario(username, password,new Date());
-			if(uDAO.insertUsuario(u)) {
-				respuesta = new MensajeApp("ok","inserted");
+			if(edad == null) {
+				Usuario u = new Usuario(username, password,new Date());
+				if(uDAO.insertUsuario(u)) {
+					respuesta = new MensajeApp("ok","inserted");
+				}else {
+					respuesta = new MensajeApp("error","exists");
+				}
 			}else {
-				respuesta = new MensajeApp("error","exists");
+				Integer edadInteger = Integer.valueOf(edad);
+				Usuario u = new Usuario(username,edadInteger,password, new Date(), null);
+				if(uDAO.insertUsuario(u)) {
+					respuesta = new MensajeApp("ok","inserted");
+				}else {
+					respuesta = new MensajeApp("error","exists");
+				}
 			}
 		}
 		response.setContentType("application/json");
