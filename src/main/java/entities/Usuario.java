@@ -1,5 +1,5 @@
 package entities;
-// Generated 14-nov-2017 11:46:19 by Hibernate Tools 5.2.6.Final
+// Generated 23-nov-2017 20:02:51 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 @Table(name = "Usuario", catalog = "mytokyo2020")
 public class Usuario implements java.io.Serializable {
 
+	private String email;
 	private String username;
 	private Integer edad;
 	private String password;
@@ -29,14 +30,16 @@ public class Usuario implements java.io.Serializable {
 	public Usuario() {
 	}
 
-	public Usuario(String username, String password, Date lastModification) {
+	public Usuario(String email, String username, String password, Date lastModification) {
+		this.email = email;
 		this.username = username;
 		this.password = password;
 		this.lastModification = lastModification;
 	}
 
-	public Usuario(String username, Integer edad, String password, Date lastModification,
+	public Usuario(String email, String username, Integer edad, String password, Date lastModification,
 			Set<UsuarioCompraEvento> usuarioCompraEventos) {
+		this.email = email;
 		this.username = username;
 		this.edad = edad;
 		this.password = password;
@@ -46,7 +49,16 @@ public class Usuario implements java.io.Serializable {
 
 	@Id
 
-	@Column(name = "Username", unique = true, nullable = false, length = 10)
+	@Column(name = "Email", unique = true, nullable = false, length = 50)
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Column(name = "Username", nullable = false, length = 45)
 	public String getUsername() {
 		return this.username;
 	}

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated 14-nov-2017 11:46:20 by Hibernate Tools 5.2.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-nov-2017 20:02:51 by Hibernate Tools 5.2.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
     <class catalog="mytokyo2020" dynamic-insert="false" dynamic-update="false" mutable="true" name="entities.UsuarioCompraEvento" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="Usuario_compra_Evento">
         <composite-id class="entities.UsuarioCompraEventoId" mapped="false" name="id" unsaved-value="undefined">
-            <key-property name="usuarioUsername" type="string">
-                <column length="10" name="Usuario_Username"/>
+            <key-property name="usuarioEmail" type="string">
+                <column length="50" name="Usuario_Email"/>
             </key-property>
             <key-property name="eventoIdEvento" type="int">
                 <column name="Evento_idEvento"/>
@@ -14,7 +14,7 @@
             <column name="Evento_idEvento" not-null="true"/>
         </many-to-one>
         <many-to-one class="entities.Usuario" embed-xml="true" fetch="select" insert="false" name="usuario" not-found="exception" optimistic-lock="true" unique="false" update="false">
-            <column length="10" name="Usuario_Username" not-null="true"/>
+            <column length="50" name="Usuario_Email" not-null="true"/>
         </many-to-one>
         <property generated="never" lazy="false" name="precio" optimistic-lock="true" type="java.lang.Float" unique="false">
             <column name="Precio" precision="12" scale="0"/>

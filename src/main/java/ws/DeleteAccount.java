@@ -38,12 +38,12 @@ public class DeleteAccount extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MensajeApp respuesta = null;
-		String username = request.getParameter("username");
+		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		if((username==null)&&(password==null)) {
+		if((email==null)&&(password==null)) {
 			respuesta = new MensajeApp("error","missing");
 		}else {
-			List<Usuario> uAuxL = uDAO.getUsuarioByUsername(username);
+			List<Usuario> uAuxL = uDAO.getUsuarioByEmail(email);
 			if(!uAuxL.isEmpty()) {
 				Usuario uAux = uAuxL.get(0);
 				Set<UsuarioCompraEvento> eventosUser = uAux.getUsuarioCompraEventos();
@@ -56,7 +56,7 @@ public class DeleteAccount extends HttpServlet {
 				}
 				uAux.setUsuarioCompraEventos(eventosUser);
 				uDAO.updateUsuario(uAux);
-				List<Usuario> uAuxL2 = uDAO.getUsuarioByUsername(username);
+				List<Usuario> uAuxL2 = uDAO.getUsuarioByEmail(email);
 				Usuario uAux2 = uAuxL2.get(0);
 				if(uDAO.deleteUsuario(uAux2)) {
 					respuesta = new MensajeApp("ok","deleted");

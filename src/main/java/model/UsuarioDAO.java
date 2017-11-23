@@ -32,12 +32,12 @@ public class UsuarioDAO {
 		return l;
 	}
 	
-	public List<Usuario> getUsuarioByUsername(String username) {
+	public List<Usuario> getUsuarioByEmail(String email) {
 		SessionFactory sf = hU.getSessionFactory();
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
-		List<Usuario> l = sess.createCriteria(Usuario.class).add(Restrictions.idEq(username)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		List<Usuario> l = sess.createCriteria(Usuario.class).add(Restrictions.idEq(email)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		sess.close();
 		return l;
 	}
@@ -48,10 +48,10 @@ public class UsuarioDAO {
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
-		List<Usuario> l = sess.createCriteria(Usuario.class).add(Restrictions.idEq(u.getUsername())).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		List<Usuario> l = sess.createCriteria(Usuario.class).add(Restrictions.idEq(u.getEmail())).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		if(!l.isEmpty()) {
 			sess.close();
-			uLogger.error("The user with ID = " + u.getUsername() + " already exists.");
+			uLogger.error("The user with email = " + u.getEmail() + " already exists.");
 			uLogger.info("Exiting insertUsuario.");
 			return false;
 		}
@@ -59,7 +59,7 @@ public class UsuarioDAO {
 		sess.save(u);
 		sess.getTransaction().commit();
 		sess.close();
-		uLogger.info("User with ID = " + u.getUsername() + " inserted correctly.");
+		uLogger.info("User with email = " + u.getEmail() + " inserted correctly.");
 		uLogger.info("Exiting insertUsuario");
 		return true;
 	}
@@ -69,7 +69,7 @@ public class UsuarioDAO {
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
-		List<Usuario> l = sess.createCriteria(Usuario.class).add(Restrictions.idEq(u.getUsername())).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		List<Usuario> l = sess.createCriteria(Usuario.class).add(Restrictions.idEq(u.getEmail())).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		if(l.isEmpty()) {
 			sess.close();
 			return false;
@@ -87,7 +87,7 @@ public class UsuarioDAO {
 		Session sess = sf.openSession();
 		sess.beginTransaction();
 		@SuppressWarnings({ "unchecked", "deprecation" })
-		List<Usuario> l = sess.createCriteria(Usuario.class).add(Restrictions.idEq(u.getUsername())).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		List<Usuario> l = sess.createCriteria(Usuario.class).add(Restrictions.idEq(u.getEmail())).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		if(l.isEmpty()) {
 			sess.close();
 			return false;

@@ -1,5 +1,5 @@
 package entities;
-// Generated 14-nov-2017 11:46:19 by Hibernate Tools 5.2.6.Final
+// Generated 23-nov-2017 20:02:51 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import javax.persistence.AttributeOverride;
@@ -51,7 +51,7 @@ public class UsuarioCompraEvento implements java.io.Serializable {
 	@EmbeddedId
 
 	@AttributeOverrides({
-			@AttributeOverride(name = "usuarioUsername", column = @Column(name = "Usuario_Username", nullable = false, length = 10)),
+			@AttributeOverride(name = "usuarioEmail", column = @Column(name = "Usuario_Email", nullable = false, length = 50)),
 			@AttributeOverride(name = "eventoIdEvento", column = @Column(name = "Evento_idEvento", nullable = false)) })
 	public UsuarioCompraEventoId getId() {
 		return this.id;
@@ -72,7 +72,7 @@ public class UsuarioCompraEvento implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Usuario_Username", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "Usuario_Email", nullable = false, insertable = false, updatable = false)
 	public Usuario getUsuario() {
 		return this.usuario;
 	}

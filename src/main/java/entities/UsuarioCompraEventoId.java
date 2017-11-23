@@ -1,5 +1,5 @@
 package entities;
-// Generated 14-nov-2017 11:46:19 by Hibernate Tools 5.2.6.Final
+// Generated 23-nov-2017 20:02:51 by Hibernate Tools 5.2.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -10,24 +10,24 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class UsuarioCompraEventoId implements java.io.Serializable {
 
-	private String usuarioUsername;
+	private String usuarioEmail;
 	private int eventoIdEvento;
 
 	public UsuarioCompraEventoId() {
 	}
 
-	public UsuarioCompraEventoId(String usuarioUsername, int eventoIdEvento) {
-		this.usuarioUsername = usuarioUsername;
+	public UsuarioCompraEventoId(String usuarioEmail, int eventoIdEvento) {
+		this.usuarioEmail = usuarioEmail;
 		this.eventoIdEvento = eventoIdEvento;
 	}
 
-	@Column(name = "Usuario_Username", nullable = false, length = 10)
-	public String getUsuarioUsername() {
-		return this.usuarioUsername;
+	@Column(name = "Usuario_Email", nullable = false, length = 50)
+	public String getUsuarioEmail() {
+		return this.usuarioEmail;
 	}
 
-	public void setUsuarioUsername(String usuarioUsername) {
-		this.usuarioUsername = usuarioUsername;
+	public void setUsuarioEmail(String usuarioEmail) {
+		this.usuarioEmail = usuarioEmail;
 	}
 
 	@Column(name = "Evento_idEvento", nullable = false)
@@ -48,16 +48,15 @@ public class UsuarioCompraEventoId implements java.io.Serializable {
 			return false;
 		UsuarioCompraEventoId castOther = (UsuarioCompraEventoId) other;
 
-		return ((this.getUsuarioUsername() == castOther.getUsuarioUsername())
-				|| (this.getUsuarioUsername() != null && castOther.getUsuarioUsername() != null
-						&& this.getUsuarioUsername().equals(castOther.getUsuarioUsername())))
+		return ((this.getUsuarioEmail() == castOther.getUsuarioEmail()) || (this.getUsuarioEmail() != null
+				&& castOther.getUsuarioEmail() != null && this.getUsuarioEmail().equals(castOther.getUsuarioEmail())))
 				&& (this.getEventoIdEvento() == castOther.getEventoIdEvento());
 	}
 
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result + (getUsuarioUsername() == null ? 0 : this.getUsuarioUsername().hashCode());
+		result = 37 * result + (getUsuarioEmail() == null ? 0 : this.getUsuarioEmail().hashCode());
 		result = 37 * result + this.getEventoIdEvento();
 		return result;
 	}

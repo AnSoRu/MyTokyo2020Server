@@ -46,17 +46,17 @@ public class BuyTicket extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String usuario = request.getParameter("username");
+		String email = request.getParameter("email");
 		String idEvento = request.getParameter("idEvento");
 		MensajeApp respuesta = null;
-		if(idEvento == null || usuario == null) {
+		if(idEvento == null || email == null) {
 			respuesta = new MensajeApp("error","missing");
 			response.setContentType("application/json");
 			response.getWriter().print(new JSONSerializer().exclude("class").serialize(respuesta));
 		}else {
 			List<Evento> eAuxL = eDAO.getEventoByID(Integer.valueOf(idEvento));
 			if(!eAuxL.isEmpty()) {
-				List<Usuario> uAuxL = uDAO.getUsuarioByUsername(usuario);
+				List<Usuario> uAuxL = uDAO.getUsuarioByEmail(email);
 				if(!uAuxL.isEmpty()) {
 					Usuario uAux = uAuxL.get(0);
 					Evento eAux = eAuxL.get(0);
@@ -64,7 +64,7 @@ public class BuyTicket extends HttpServlet {
 					Set<UsuarioCompraEvento> usersEvento = eAux.getUsuarioCompraEventos();
 					if(!eventosUser.isEmpty()) {
 						for(UsuarioCompraEvento uce: eventosUser) {
-							if((uce.getId().getUsuarioUsername().equals(uAux.getUsername()))&&
+							if((uce.getId().getUsuarioEmail().equals(uAux.getEmail()))&&
 									(uce.getEvento().getIdEvento() == eAux.getIdEvento())) {
 								yaComprado = true;
 								break;
@@ -75,7 +75,7 @@ public class BuyTicket extends HttpServlet {
 							response.setContentType("application/json");
 							response.getWriter().print(new JSONSerializer().exclude("class").serialize(respuesta));
 						}else {
-							UsuarioCompraEventoId nuevoUCE = new UsuarioCompraEventoId(uAux.getUsername(),eAux.getIdEvento());
+							UsuarioCompraEventoId nuevoUCE = new UsuarioCompraEventoId(uAux.getEmail(),eAux.getIdEvento());
 							UsuarioCompraEvento uCE = new UsuarioCompraEvento(nuevoUCE, eAux, uAux,new Random().nextFloat(),new Date(),new Date());
 							if(uCDAO.insert(uCE)) {
 								respuesta = new MensajeApp("ok","bought1");
@@ -88,7 +88,7 @@ public class BuyTicket extends HttpServlet {
 							}
 						}
 					}else {
-						UsuarioCompraEventoId nuevoUCE = new UsuarioCompraEventoId(uAux.getUsername(),eAux.getIdEvento());
+						UsuarioCompraEventoId nuevoUCE = new UsuarioCompraEventoId(uAux.getEmail(),eAux.getIdEvento());
 						UsuarioCompraEvento uCE = new UsuarioCompraEvento(nuevoUCE, eAux, uAux,new Random().nextFloat(), new Date(), new Date());
 						eventosUser.add(uCE);
 						usersEvento.add(uCE);

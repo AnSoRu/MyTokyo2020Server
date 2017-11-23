@@ -36,14 +36,14 @@ public class GetShoppingHistory extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
+		String email = request.getParameter("email");
 		MensajeApp respuesta = null;
-		if(username==null) {
+		if(email==null) {
 			respuesta = new MensajeApp("error","missing");
 			response.setContentType("application/json");
 			response.getWriter().print(new JSONSerializer().exclude("class").serialize(respuesta));
 		}else {
-			List<Usuario> uAuxL = uDAO.getUsuarioByUsername(username);
+			List<Usuario> uAuxL = uDAO.getUsuarioByEmail(email);
 			if(!uAuxL.isEmpty()) {
 				Usuario uAux = uAuxL.get(0);
 				Set<UsuarioCompraEvento> eventosUser = uAux.getUsuarioCompraEventos();
