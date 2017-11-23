@@ -75,6 +75,12 @@
  	<description></description>
  	<servlet-class>ws.BuyTicket</servlet-class>
  </servlet>
+ <servlet>
+ 	<servlet-name>CheckConnectivity</servlet-name>
+ 	<display-name>CheckConnectivity</display-name>
+ 	<description></description>
+ 	<servlet-class>ws.CheckConnectivity</servlet-class>
+ </servlet>
  <servlet-mapping>
  	<servlet-name>SignUp</servlet-name>
  	<url-pattern>/SignUp</url-pattern>
@@ -122,5 +128,9 @@
  <servlet-mapping>
  	<servlet-name>BuyTicket</servlet-name>
  	<url-pattern>/BuyTicket</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+ 	<servlet-name>CheckConnectivity</servlet-name>
+ 	<url-pattern>/CheckConnectivity</url-pattern>
  </servlet-mapping>
 </web-app>
