@@ -7,6 +7,9 @@
   <property name="hibernate.connection.password">R476gF8AA</property>
   <property name="hibernate.connection.url">jdbc:mysql://mytokyo2020.cjjzwdti4mxt.eu-west-2.rds.amazonaws.com:3306/mytokyo2020</property>
   <property name="hibernate.connection.username">Dam2017G3</property>
+  <!-- <property name="hibernate.connection.password">bo42son3</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mytokyo2020</property>
+  <property name="hibernate.connection.username">root</property> -->
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <mapping class="entities.Deportista"/>
   <mapping class="entities.Disciplina"/>
