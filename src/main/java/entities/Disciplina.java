@@ -20,6 +20,10 @@ import javax.persistence.TemporalType;
 @Table(name = "Disciplina", catalog = "mytokyo2020")
 public class Disciplina implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1750843854449327154L;
 	private int idDisciplina;
 	private String nombre;
 	private String descripcion;

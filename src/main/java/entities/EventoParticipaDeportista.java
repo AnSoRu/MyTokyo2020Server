@@ -21,6 +21,10 @@ import javax.persistence.TemporalType;
 @Table(name = "Evento_participa_Deportista", catalog = "mytokyo2020")
 public class EventoParticipaDeportista implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3977625322610868278L;
 	private EventoParticipaDeportistaId id;
 	private Deportista deportista;
 	private Evento evento;

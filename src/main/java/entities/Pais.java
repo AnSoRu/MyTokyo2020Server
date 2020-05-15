@@ -20,6 +20,10 @@ import javax.persistence.TemporalType;
 @Table(name = "Pais", catalog = "mytokyo2020")
 public class Pais implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7071339722495372231L;
 	private int idPais;
 	private String nombre;
 	private Integer medallasOro;
